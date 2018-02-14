@@ -21,6 +21,17 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
+            nameLabel.text = tweet.user.name
+            usernameLabel.text = "@" + tweet.user.screenName
+            timeLabel.text = tweet.createdAtString
+            let rtext = String(describing: tweet.retweetCount)
+            retweetLabel.text = rtext
+            let ftext = String(describing: tweet.favoriteCount!)
+            favoriteLabel.text = ftext
+            let pUrl = URL(string: tweet.user.photoUrl)
+            let data = try? Data(contentsOf: pUrl!)
+            profileImageView.image = UIImage(data: data!)
+            profileImageView.layer.cornerRadius = 22.0
         }
     }
     
