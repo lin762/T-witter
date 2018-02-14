@@ -10,6 +10,12 @@ import UIKit
 
 class TweetCell: UITableViewCell {
     
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var favoriteLabel: UILabel!
+    @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     
     var tweet: Tweet! {

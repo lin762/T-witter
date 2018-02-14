@@ -17,7 +17,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
+        tableView.dataSource  = self
         tableView.delegate = self
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -31,6 +31,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error getting home timeline: " + error.localizedDescription)
             }
         }
+    }
+    
+    @IBAction func onFav(_ sender: Any) {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
