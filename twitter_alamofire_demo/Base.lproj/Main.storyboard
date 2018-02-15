@@ -137,7 +137,7 @@
                                                         <color key="titleColor" white="0.5107493856123515" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onFav:" destination="5YO-Vh-39k" eventType="touchUpInside" id="DM5-zX-S4e"/>
+                                                        <action selector="onFav:" destination="U1g-kw-izy" eventType="touchUpInside" id="dZE-gA-YnY"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MY-5f-x5w">
@@ -211,6 +211,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favButton" destination="Dbi-cs-V8N" id="w7O-Wu-kY5"/>
                                             <outlet property="favoriteLabel" destination="WhY-63-BpV" id="egF-Pd-LoX"/>
                                             <outlet property="nameLabel" destination="r9O-3O-4ec" id="K8f-dN-pSP"/>
                                             <outlet property="profileImageView" destination="uXX-1S-d9W" id="RH9-cv-cC9"/>

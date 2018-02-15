@@ -17,6 +17,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var favButton: UIButton!
     
     var tweet: Tweet! {
         didSet {
@@ -32,6 +33,43 @@ class TweetCell: UITableViewCell {
             let data = try? Data(contentsOf: pUrl!)
             profileImageView.image = UIImage(data: data!)
             profileImageView.layer.cornerRadius = 22.0
+            if(tweet.favorited == true){
+                let favImage = UIImage(named: "favor-icon-red")
+                favButton.setImage(favImage, for: [])
+            }else{
+                let favImage = UIImage(named: "favor-icon")
+                favButton.setImage(favImage, for: [])
+            }
+        }
+    }
+    
+    @IBAction func onFav(_ sender: Any) {
+        if tweet.favorited! == true{
+            tweet.favorited = false
+            tweet.favoriteCount = tweet.favoriteCount! - 1
+            let favImage = UIImage(named: "favor-icon")
+            favButton.setImage(favImage, for: [])
+            favoriteLabel.text = String(describing: tweet.favoriteCount!)
+            APIManager.shared.favorite(tweet) { (tweet, error) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+            return
+        }
+        tweet.favoriteCount = tweet.favoriteCount! + 1
+        tweet.favorited = true
+        let favImage = UIImage(named: "favor-icon-red")
+        favButton.setImage(favImage, for: [])
+        favoriteLabel.text = String(describing: tweet.favoriteCount!)
+        APIManager.shared.favorite(tweet) { (tweet, error) in
+            if let  error = error {
+                print("Error favoriting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+            }
         }
     }
     

@@ -47,9 +47,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     }
     
-    @IBAction func onFav(_ sender: Any) {
-    }
-    
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
