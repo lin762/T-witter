@@ -18,6 +18,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
     
     var tweet: Tweet! {
         didSet {
@@ -43,6 +44,36 @@ class TweetCell: UITableViewCell {
         }
     }
     
+    @IBAction func onRetweet(_ sender: Any) {
+        if tweet.retweeted == true{
+            tweet.retweeted = false
+            tweet.retweetCount = tweet.retweetCount - 1
+            let rImage = UIImage(named: "retweet-icon")
+            retweetButton.setImage(rImage, for: [])
+            retweetLabel.text = String(describing: tweet.retweetCount)
+            APIManager.shared.unretweet(tweet) { (tweet, error) in
+                if let  error = error {
+                    print("Error un-retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
+            return
+        }
+        tweet.retweeted = true
+        tweet.retweetCount = tweet.retweetCount + 1
+        let rImage = UIImage(named: "retweet-icon-green")
+        retweetButton.setImage(rImage, for: [])
+        retweetLabel.text = String(describing: tweet.retweetCount)
+        APIManager.shared.retweet(tweet) { (tweet, error) in
+            if let  error = error {
+                print("Error retweeting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+            }
+        }
+        return
+    }
     @IBAction func onFav(_ sender: Any) {
         if tweet.favorited! == true{
             tweet.favorited = false
@@ -50,11 +81,11 @@ class TweetCell: UITableViewCell {
             let favImage = UIImage(named: "favor-icon")
             favButton.setImage(favImage, for: [])
             favoriteLabel.text = String(describing: tweet.favoriteCount!)
-            APIManager.shared.favorite(tweet) { (tweet, error) in
+            APIManager.shared.unfavorite(tweet) { (tweet, error) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error un-favoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully un-favorited the following Tweet: \n\(tweet.text)")
                 }
             }
             return
