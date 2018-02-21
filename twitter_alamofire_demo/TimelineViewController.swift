@@ -47,7 +47,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     }
     
-  
+    @IBAction func onPost(_ sender: Any) {
+        performSegue(withIdentifier: "postSegue", sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
