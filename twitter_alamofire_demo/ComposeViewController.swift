@@ -14,17 +14,16 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tweetTextField: UITextView!
-    
     var delegate: ComposeViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetTextField.delegate = self
-        //let pString = (User.current?.photoUrl)!
-        /*let pUrl = URL(string: (User.current?.photoUrl)!)
+        
+        let pUrl = URL(string: (User.current?.photoUrl)!)
         let data = try? Data(contentsOf: pUrl!)
         profileImageView.image = UIImage(data: data!)
-        profileImageView.layer.cornerRadius = 22.0*/
+        profileImageView.layer.cornerRadius = 22.0
         // Do any additional setup after loading the view.
     }
 
@@ -51,6 +50,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
         countLabel.text = "\(count)"
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
