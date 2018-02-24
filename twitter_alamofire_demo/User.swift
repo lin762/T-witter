@@ -16,6 +16,8 @@ class User {
     var followers: Int
     var following: Int
     var tweetCount: Int
+    var tagLine: String
+    var headerUrl: String
     static var current: User?
     
     init(dictionary: [String: Any]) {
@@ -25,5 +27,7 @@ class User {
         followers = dictionary["followers_count"] as! Int
         following = dictionary["friends_count"] as! Int
         tweetCount = dictionary["statuses_count"] as! Int
+        headerUrl = dictionary["profile_banner_url"] as! String
+        tagLine = dictionary["description"] as! String
     }
 }
