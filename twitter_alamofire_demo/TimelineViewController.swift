@@ -52,6 +52,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "postSegue", sender: nil)
     }
     
+    @IBAction func onProfile(_ sender: Any) {
+        performSegue(withIdentifier: "profileSegue", sender: nil)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
