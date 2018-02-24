@@ -48,6 +48,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onPost(_ sender: Any) {
+        
         performSegue(withIdentifier: "postSegue", sender: nil)
     }
     
