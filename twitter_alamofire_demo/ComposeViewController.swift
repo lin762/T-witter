@@ -15,7 +15,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tweetTextField: UITextView!
     
-    
     var delegate: ComposeViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
 
     
     @IBAction func didPost(_ sender: Any) {
-        APIManager.shared.composeTweet(with: "This is my tweet 😀") { (tweet, error) in
+        APIManager.shared.composeTweet(with: tweetTextField.text) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
